@@ -71,7 +71,7 @@ export default async function Home() {
       url = url.slice(url.length - 2).join(".");
     }
 
-    if (url.indexOf("/") !== -1) {
+    if (url?.indexOf("/") !== -1) {
       return url.split("/")[0];
     }
 
