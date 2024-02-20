@@ -20,7 +20,7 @@ export default function Home() {
           theme="dark"
           showLinks={true}
           providers={[]}
-          redirectTo="http://localhost:3000/auth/callback"
+          redirectTo="https://birbla.com/auth/callback"
         />
       </main>
       <Footer />
