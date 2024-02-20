@@ -63,7 +63,7 @@ export default async function Home() {
   function getDomain(url, subdomain) {
     subdomain = subdomain || false;
 
-    url = url.replace(/(https?:\/\/)?(www.)?/i, "");
+    url = url?.replace(/(https?:\/\/)?(www.)?/i, "");
 
     if (!subdomain) {
       url = url.split(".");
