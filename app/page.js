@@ -72,7 +72,7 @@ export default async function Home() {
     }
 
     if (url?.indexOf("/") !== -1) {
-      return url.split("/")[0];
+      return url?.split("/")[0];
     }
 
     return url;
