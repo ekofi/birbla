@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Birbla",
-  description: "Let's bring social media back",
+  description: "A Hacker News reader with AI personalized feed + good design",
 };
 
 export default function RootLayout({ children }) {
