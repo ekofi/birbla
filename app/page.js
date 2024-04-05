@@ -4,6 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
 import got from "got";
+import Image from "next/image";
 
 export default async function Home() {
   const cookieStore = cookies();
@@ -88,13 +89,18 @@ export default async function Home() {
             {posts2.map((post) => (
               <li className="mb-6" key={post.objectID}>
                 <a href={post.url}>
-                  <img
+                  <Image
                     className="rounded-xl mb-2 imageU"
+                    width={650}
+                    height={650}
                     src={
-                      post.imageUrl ||
-                      "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png"
+                      typeof post.imageUrl === "string" &&
+                      post.imageUrl.startsWith("./")
+                        ? "/" + post.imageUrl.slice(2)
+                        : post.imageUrl ||
+                          "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png"
                     }
-                  ></img>
+                  />
                 </a>
                 <a href={post.url}>{post.title}</a>{" "}
                 <a className="text-gray-400">({getDomain(post.url, true)})</a>

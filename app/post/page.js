@@ -4,6 +4,8 @@ import Footer from "../../comp/footer";
 import * as cheerio from "cheerio";
 import got from "got";
 
+import Image from "next/image";
+
 export default async function Home({ searchParams }) {
   const { id } = searchParams;
   console.log(id);
@@ -79,18 +81,23 @@ export default async function Home({ searchParams }) {
   return (
     <div className="cover-container flex flex-col items-center justify-center w-full h-full p-3 mx-auto">
       <Header />
-      <main class="px-3 my-3 scroll">
+      <main
+        class="px-3 my-3 scroll"
+        style={{ width: "-webkit-fill-available" }}
+      >
         <div class="text-lg mb-4">
           <ul className="text-left">
             <div className="mb-6">
               <a href={posts.url}>
-                <img
+                <Image
                   className="rounded-xl mb-2 imageU"
+                  width={650}
+                  height={650}
                   src={
                     posts2.image ||
                     "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png"
                   }
-                ></img>
+                />
               </a>
               <a href={posts.url}>{posts.title}</a>{" "}
               <a className="text-gray-400">({getDomain(posts.url, true)})</a>
