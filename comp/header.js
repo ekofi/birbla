@@ -7,9 +7,15 @@ export default function Header({ user }) {
         </h3>
         <nav className="flex items-center space-x-4">
           {user ? (
-            <a className="font-bold py-1 px-0" href="/profile">
-              {user.email}
-            </a>
+            <>
+              <a className="font-bold py-1 px-0" href="/share">
+                Share
+              </a>
+              <a className="mx-4"> · </a>
+              <a className="font-bold py-1 px-0" href="/profile">
+                {user.email}
+              </a>
+            </>
           ) : (
             <a className="font-bold py-1 px-0" href="/login">
               Login

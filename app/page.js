@@ -21,7 +21,7 @@ export default async function Home() {
   const posts2 = await Promise.all(
     posts.hits.map(async (post) => {
       const imageUrl = await imageURL(post.url);
-      return { ...post, imageUrl }; // Add imageUrl to each post object
+      return { ...post, imageUrl };
     })
   );
 

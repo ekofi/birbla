@@ -84,3 +84,16 @@ body {
   justify-content: center;
   flex-direction: column;
 }
+
+.mr-4 {
+  margin-right: 0.4rem;
+}
+
+.mx-4 {
+  margin-left: 0.4rem;
+  margin-right: 0.4rem;
+}
+
+.ql-container.ql-snow {
+  height: 200px;
+}

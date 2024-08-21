@@ -70,7 +70,15 @@ export default function AccountForm({ user }) {
     <div className="cover-container flex flex-col items-center justify-center w-full h-full p-3 mx-auto">
       <Header user={user} />
       <main className="px-3 my-3 w-full">
-        <h1 className="text-4xl font-bold mb-4">Login</h1>
+        <h1 className="text-4xl font-bold mb-4">Profile</h1>
+        <div className="mt-4 mb-4">
+          <a
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            href={`/profile/${username}`}
+          >
+            See your profile
+          </a>
+        </div>
         <div className="form-widget">
           <Avatar
             uid={user.id}
