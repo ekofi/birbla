@@ -97,3 +97,35 @@ body {
 .ql-container.ql-snow {
   height: 200px;
 }
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.image-container img {
+  width: 100%;
+  display: block;
+}
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 7) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+@media (prefers-color-scheme: light) {
+  .gradient-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 7) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
