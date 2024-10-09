@@ -26,7 +26,7 @@ export default function Home() {
               />
               <div class="gradient-overlay"></div>
             </div>
-            <div class="max-w-screen-md mb-4 lg:mb-8">
+            <div class="max-w-screen-md mt-4 mb-4 lg:mb-8">
               <h1 className="text-4xl font-bold mb-4 tracking-tight font-extrabold">
                 Hacker News, Reinvented: Great Design, AI Personalization,
                 Instant Notifications

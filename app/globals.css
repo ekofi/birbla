@@ -124,8 +124,9 @@ body {
   .gradient-overlay {
     background: linear-gradient(
       to top,
-      rgb(214, 219, 220) 0%,
-      /* rgba(255, 255, 255, 7) 0%, */ rgba(255, 255, 255, 0) 100%
+      rgb(214, 219, 220, 7) 0%,
+      /* rgb(214, 219, 220)  0%, */ /* rgba(255, 255, 255, 7) 0%, */
+        rgba(255, 255, 255, 0) 100%
     );
   }
 }
