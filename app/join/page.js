@@ -40,7 +40,7 @@ export default function Home() {
                 href="https://buy.stripe.com/9AQ29GdJp1qzbnOcN3"
                 rel="noreferrer noopener"
                 target="_blank"
-                className="text-3xl font-bold mb-4 tracking-tight font-extrabold"
+                className="text-2xl font-bold mb-4 tracking-tight font-extrabold"
               >
                 Get Premium for $24/year
               </a>
@@ -53,7 +53,7 @@ export default function Home() {
               <div className="gradient-overlay"></div>
             </div> */}
             <div class="space-y-2 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-              <div class="flex flex-col items-center text-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-col items-center text-center rounded-lg dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center items-center w-12 h-12 rounded-full bg-primary-100 lg:h-14 lg:w-14 dark:bg-primary-900">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@ export default function Home() {
                   of the links.
                 </p>
               </div>
-              <div class="flex flex-col items-center text-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-col items-center text-center rounded-lg dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center items-center  w-12 h-12 rounded-full bg-primary-100 lg:h-14 lg:w-14 dark:bg-primary-900">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ export default function Home() {
                   Personalize your journey using AI-powered algorithm.
                 </p>
               </div>
-              <div class="flex flex-col items-center text-center rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-col items-center text-center rounded-lg dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center items-center w-12 h-12 rounded-full bg-primary-100 lg:h-14 lg:w-14 dark:bg-primary-900">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
