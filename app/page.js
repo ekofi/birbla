@@ -5,14 +5,31 @@ import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
 import got from "got";
 import Image from "next/image";
+import { useState } from "react";
+
+// Custom Image component with error handling
+const PostImage = ({ src, ...props }) => {
+  const [error, setError] = useState(false);
+  const fallbackImage =
+    "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png";
+
+  return (
+    <Image
+      {...props}
+      src={error ? fallbackImage : src}
+      onError={() => setError(true)}
+      alt="Post thumbnail"
+    />
+  );
+};
 
 export default async function Home() {
   const cookieStore = cookies();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
-
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
   const res = await fetch(
     "http://hn.algolia.com/api/v1/search?tags=front_page"
   );
@@ -33,9 +50,18 @@ export default async function Home() {
         $('meta[property="og:image"]').attr("content") ||
         $('meta[name="twitter:image"]').attr("content");
 
-      return imageUrl;
+      // Validate the image URL
+      if (imageUrl) {
+        try {
+          await got.head(imageUrl);
+          return imageUrl;
+        } catch {
+          return null;
+        }
+      }
+      return null;
     } catch (error) {
-      return 500;
+      return null;
     }
   }
 
@@ -52,7 +78,6 @@ export default async function Home() {
       ["seconds", 1],
     ];
     const secondsElapsed = (date.getTime() - Date.now()) / 1000;
-
     for (const [rangeType, rangeVal] of ranges) {
       if (rangeVal < Math.abs(secondsElapsed)) {
         const delta = secondsElapsed / rangeVal;
@@ -63,33 +88,28 @@ export default async function Home() {
 
   function getDomain(url, subdomain) {
     subdomain = subdomain || false;
-
     url = url?.replace(/(https?:\/\/)?(www.)?/i, "");
-
     if (!subdomain) {
       url = url.split(".");
-
       url = url.slice(url.length - 2).join(".");
     }
-
     if (url?.indexOf("/") !== -1) {
       return url?.split("/")[0];
     }
-
     return url;
   }
 
   return (
     <div className="cover-container flex flex-col items-center justify-center w-full h-full p-3 mx-auto">
       <Header user={user} />
-      <main class="px-3 my-3 scroll">
-        <h1 class="text-4xl font-bold mb-4">Feed</h1>
-        <div class="text-lg mb-4">
+      <main className="px-3 my-3 scroll">
+        <h1 className="text-4xl font-bold mb-4">Feed</h1>
+        <div className="text-lg mb-4">
           <ul className="text-left">
             {posts2.map((post) => (
               <li className="mb-6" key={post.objectID}>
                 <a href={post.url}>
-                  <Image
+                  <PostImage
                     className="rounded-xl mb-2 imageU"
                     width={650}
                     height={650}
