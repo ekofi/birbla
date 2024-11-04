@@ -3,7 +3,6 @@ import Footer from "../comp/footer";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
-import got from "got";
 import Image from "next/image";
 
 // Custom Image component without client-side state
@@ -34,8 +33,9 @@ export default async function Home() {
 
   async function imageURL(input) {
     try {
-      const response = await got(input);
-      const $ = cheerio.load(response.body);
+      const response = await fetch(input);
+      const body = await response.text();
+      const $ = cheerio.load(body);
       const imageUrl =
         $('meta[property="og:image"]').attr("content") ||
         $('meta[name="twitter:image"]').attr("content");
@@ -43,8 +43,11 @@ export default async function Home() {
       // Validate the image URL
       if (imageUrl) {
         try {
-          await got.head(imageUrl);
-          return imageUrl;
+          const headResponse = await fetch(imageUrl, { method: "HEAD" });
+          if (headResponse.ok) {
+            return imageUrl;
+          }
+          return null;
         } catch {
           return null;
         }

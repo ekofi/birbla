@@ -2,8 +2,6 @@ import Header from "../../comp/header";
 import Footer from "../../comp/footer";
 
 import * as cheerio from "cheerio";
-import got from "got";
-
 import Image from "next/image";
 
 export default async function Home({ searchParams }) {
@@ -16,7 +14,6 @@ export default async function Home({ searchParams }) {
   const posts2 = await Object.entries(posts).reduce(
     async (accumulator, [postId, post]) => {
       const imageUrl = await imageURL(posts.url);
-      // Update accumulator with new postId and post with imageUrl
       return Object.assign(posts, { image: imageUrl });
     },
     {}
@@ -24,15 +21,27 @@ export default async function Home({ searchParams }) {
 
   async function imageURL(input) {
     try {
-      const response = await got(input);
-      const $ = cheerio.load(response.body);
+      const response = await fetch(input);
+      const body = await response.text();
+      const $ = cheerio.load(body);
       const imageUrl =
         $('meta[property="og:image"]').attr("content") ||
         $('meta[name="twitter:image"]').attr("content");
 
-      return imageUrl;
+      // Validate the image URL using a HEAD request
+      if (imageUrl) {
+        try {
+          const headResponse = await fetch(imageUrl, { method: "HEAD" });
+          if (headResponse.ok) {
+            return imageUrl;
+          }
+        } catch {
+          return null;
+        }
+      }
+      return null;
     } catch (error) {
-      return 500;
+      return null;
     }
   }
 
@@ -60,12 +69,10 @@ export default async function Home({ searchParams }) {
 
   function getDomain(url, subdomain) {
     subdomain = subdomain || false;
-
     url = url.replace(/(https?:\/\/)?(www.)?/i, "");
 
     if (!subdomain) {
       url = url.split(".");
-
       url = url.slice(url.length - 2).join(".");
     }
 
@@ -82,10 +89,10 @@ export default async function Home({ searchParams }) {
     <div className="cover-container flex flex-col items-center justify-center w-full h-full p-3 mx-auto">
       <Header />
       <main
-        class="px-3 my-3 scroll"
+        className="px-3 my-3 scroll"
         style={{ width: "-webkit-fill-available" }}
       >
-        <div class="text-lg mb-4">
+        <div className="text-lg mb-4">
           <ul className="text-left">
             <div className="mb-6">
               <a href={posts.url}>
