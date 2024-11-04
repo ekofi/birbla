@@ -5,22 +5,12 @@ import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
 import got from "got";
 import Image from "next/image";
-import { useState } from "react";
 
-// Custom Image component with error handling
+// Custom Image component without client-side state
 const PostImage = ({ src, ...props }) => {
-  const [error, setError] = useState(false);
   const fallbackImage =
     "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png";
-
-  return (
-    <Image
-      {...props}
-      src={error ? fallbackImage : src}
-      onError={() => setError(true)}
-      alt="Post thumbnail"
-    />
-  );
+  return <Image {...props} src={src || fallbackImage} alt="Post thumbnail" />;
 };
 
 export default async function Home() {
@@ -114,11 +104,8 @@ export default async function Home() {
                     width={650}
                     height={650}
                     src={
-                      typeof post.imageUrl === "string" &&
-                      post.imageUrl.startsWith("./")
-                        ? "/" + post.imageUrl.slice(2)
-                        : post.imageUrl ||
-                          "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png"
+                      post.imageUrl ||
+                      "https://htmlcolorcodes.com/assets/images/colors/light-gray-color-solid-background-1920x1080.png"
                     }
                   />
                 </a>
