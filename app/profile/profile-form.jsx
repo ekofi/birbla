@@ -160,7 +160,7 @@ export default function AccountForm({ user }) {
       ) : (
         <main className="px-3 my-3 w-full">
           <h1 className="text-4xl font-bold mb-4">
-            You don't have any subscription
+            You don&apos;t have any subscription
           </h1>
           <a className="mb-4">
             Subscribe to a better designed HNews, AI personalization,

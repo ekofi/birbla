@@ -56,7 +56,7 @@ export default function Home() {
                 </svg>
               </div>
               <h3 class="mb-2 text-xl font-bold dark:text-white">
-                We handle subscriptions manually, for now. We'll send your
+                We handle subscriptions manually, for now. We&apos;ll send your
                 subscription, whenever we can.
               </h3>
               <p class="text-gray-500 dark:text-gray-400">
