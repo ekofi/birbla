@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import GoogleAdsense from "../comp/GoogleAdsense";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
       <body className="flex h-full items-center text-center justify-center text-bg-dark">
         {children}
       </body>
+      <GoogleAdsense pId="ca-pub-4889127835846378" />
     </html>
   );
 }
