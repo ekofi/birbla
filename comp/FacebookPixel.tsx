@@ -4,20 +4,26 @@ import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
 import { FB_PIXEL_ID, pageview } from "../lib/fpixel";
+import { Suspense } from "react";
 
-export default function FacebookPixel() {
+// Separate component for search params tracking
+function FacebookPixelRoute() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // This pageview only triggers the first time (it's important for Pixel to register a page view)
-    if (FB_PIXEL_ID) pageview();
-  }, []);
-
-  useEffect(() => {
-    // This pageview triggers on route change
     if (FB_PIXEL_ID) pageview();
   }, [pathname, searchParams]);
+
+  return null;
+}
+
+// Main Facebook Pixel component
+export default function FacebookPixel() {
+  useEffect(() => {
+    // This pageview only triggers the first time
+    if (FB_PIXEL_ID) pageview();
+  }, []);
 
   return (
     <>
@@ -39,6 +45,9 @@ export default function FacebookPixel() {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <FacebookPixelRoute />
+      </Suspense>
     </>
   );
 }

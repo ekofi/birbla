@@ -9,11 +9,22 @@ import Header from "../../comp/header";
 import Footer from "../../comp/footer";
 
 import { initiateCheckout } from "../../lib/fpixel";
+import { event } from "../../lib/fpixel";
 
 export default function Home() {
   const handleClick = () => {
     // Track the click event
-    initiateCheckout(24, "USD");
+    event("InitiateCheckout", {
+      currency: "USD",
+      value: 24.0,
+    });
+
+    // You can also track it as a Lead
+    event("Lead", {
+      content_name: "Premium Subscription",
+      value: 24.0,
+      currency: "USD",
+    });
   };
 
   const supabase = createClientComponentClient();
