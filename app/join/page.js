@@ -8,7 +8,14 @@ import Image from "next/image";
 import Header from "../../comp/header";
 import Footer from "../../comp/footer";
 
+import { initiateCheckout } from "../../lib/fpixel";
+
 export default function Home() {
+  const handleClick = () => {
+    // Track the click event
+    initiateCheckout(24, "USD");
+  };
+
   const supabase = createClientComponentClient();
 
   return (
@@ -41,6 +48,7 @@ export default function Home() {
                 rel="noreferrer noopener"
                 target="_blank"
                 className="text-2xl font-bold mb-4 tracking-tight font-extrabold"
+                onClick={handleClick}
               >
                 Get Premium for $24/year
               </a>

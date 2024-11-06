@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import GoogleAdsense from "../comp/GoogleAdsense";
+import FacebookPixel from "../comp/FacebookPixel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         {children}
       </body>
       <GoogleAdsense pId="ca-pub-4889127835846378" />
+      <FacebookPixel />
     </html>
   );
 }
