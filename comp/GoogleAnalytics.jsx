@@ -4,15 +4,18 @@
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { GA_TRACKING_ID, pageview } from "../lib/gtag";
+import { GA_TRACKING_ID } from "../lib/gtag";
 
 export default function GoogleAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const url = pathname + searchParams.toString();
-    pageview(url);
+    if (pathname) {
+      window.gtag("config", GA_TRACKING_ID, {
+        page_path: pathname + searchParams.toString(),
+      });
+    }
   }, [pathname, searchParams]);
 
   return (
