@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from "next/script";
 import GoogleAdsense from "../comp/GoogleAdsense";
 import FacebookPixel from "../comp/FacebookPixel";
+import GoogleAnalytics from "../comp/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="flex h-full items-center text-center justify-center text-bg-dark">
+        {process.env.NODE_ENV === "production" && <GoogleAnalytics />}
+
         {children}
       </body>
       <GoogleAdsense pId="ca-pub-4889127835846378" />

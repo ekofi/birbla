@@ -11,6 +11,8 @@ import Footer from "../../comp/footer";
 import { initiateCheckout } from "../../lib/fpixel";
 import { event } from "../../lib/fpixel";
 
+import { gevent } from "../../lib/gtag";
+
 export default function Home() {
   const handleClick = () => {
     // Track the click event
@@ -19,11 +21,11 @@ export default function Home() {
       value: 24.0,
     });
 
-    // You can also track it as a Lead
-    event("Lead", {
-      content_name: "Premium Subscription",
-      value: 24.0,
-      currency: "USD",
+    gevent({
+      action: "button_click",
+      category: "engagement",
+      label: "example_button",
+      value: 1,
     });
   };
 
