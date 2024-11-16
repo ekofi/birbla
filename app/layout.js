@@ -4,7 +4,6 @@ import Script from "next/script";
 import GoogleAdsense from "../comp/GoogleAdsense";
 import FacebookPixel from "../comp/FacebookPixel";
 import GoogleAds from "../comp/GoogleAds";
-import Script from "next/script";
 import { GA_TRACKING_ID } from "@/lib/gtag";
 
 const inter = Inter({ subsets: ["latin"] });
