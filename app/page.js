@@ -130,6 +130,9 @@ export default async function Home() {
           </ul>
         </div>
       </main>
+      <div className="w-full border-t border-gray-200 mt-8">
+        <NewsletterSubscribe />
+      </div>
       <Footer />
     </div>
   );

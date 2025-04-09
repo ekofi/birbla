@@ -152,9 +152,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <div className="w-full border-t border-gray-200 mt-8">
-        <NewsletterSubscribe />
-      </div>
+
       <Footer />
     </div>
   );
