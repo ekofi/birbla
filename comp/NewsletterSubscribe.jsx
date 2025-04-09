@@ -3,6 +3,21 @@
 import { useState, useEffect } from "react";
 
 export default function NewsletterEmbed() {
+  // Add CSS to override iframe background if needed
+  useEffect(() => {
+    // This adds a style tag to try to override the iframe background
+    const style = document.createElement("style");
+    style.innerHTML = `
+      iframe[src="https://birbla.substack.com/embed"] {
+        background: transparent !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   const [isVisible, setIsVisible] = useState(true);
 
   // Check localStorage on component mount to see if user has dismissed the form before
@@ -24,7 +39,7 @@ export default function NewsletterEmbed() {
   }
 
   return (
-    <div className="w-full max-w-xl mx-auto py-8 px-4 relative mt-4">
+    <div className="w-full max-w-xl mx-auto py-8 px-4 relative">
       {/* Close button */}
       <button
         onClick={handleClose}
@@ -56,7 +71,7 @@ export default function NewsletterEmbed() {
           src="https://birbla.substack.com/embed"
           width="480"
           height="320"
-          style={{ border: "1px solid #EEE", background: "white" }}
+          style={{ border: "none", background: "transparent" }}
           frameBorder="0"
           scrolling="no"
         ></iframe>
