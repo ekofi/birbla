@@ -27,7 +27,7 @@ export default function NewsletterSubscribe() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto py-8 px-4 relative mt-4">
+    <div className="w-full max-w-md mx-auto py-8 px-4 relative mt-4 mb-4">
       {/* Close button */}
       <button
         onClick={handleClose}
