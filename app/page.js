@@ -132,7 +132,7 @@ export default async function Home() {
           </ul>
         </div>
       </main>
-      <div className="w-full border-t bg-white">
+      <div className="w-full border-t border-gray-200">
         <NewsletterSubscribe />
       </div>
       <Footer />
