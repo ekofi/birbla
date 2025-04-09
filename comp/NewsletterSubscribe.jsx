@@ -1,12 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { subscribeToNewsletter } from "../app/actions/newsletter";
 
 export default function NewsletterSubscribe() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Check localStorage on component mount to see if user has dismissed the form before
+  useEffect(() => {
+    const hasClosedNewsletter = localStorage.getItem("newsletterClosed");
+    if (hasClosedNewsletter) {
+      setIsVisible(false);
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,8 +37,40 @@ export default function NewsletterSubscribe() {
     }
   }
 
+  function handleClose() {
+    setIsVisible(false);
+    // Save to localStorage so it stays closed on page refresh
+    localStorage.setItem("newsletterClosed", "true");
+  }
+
+  if (!isVisible) {
+    return null; // Don't render anything if the component is closed
+  }
+
   return (
-    <div className="w-full max-w-md mx-auto py-8 px-4">
+    <div className="w-full max-w-md mx-auto py-8 px-4 relative mt-4">
+      {/* Close button */}
+      <button
+        onClick={handleClose}
+        className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
+        aria-label="Close newsletter signup"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold mb-2">Join for free</h2>
         <p className="text-gray-600">
