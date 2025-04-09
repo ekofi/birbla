@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { subscribeToNewsletter } from "../app/actions/newsletter";
 
 export default function NewsletterSubscribe() {
   const [email, setEmail] = useState("");
@@ -22,7 +21,16 @@ export default function NewsletterSubscribe() {
     setIsSubmitting(true);
 
     try {
-      const result = await subscribeToNewsletter(new FormData(e.target));
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await response.json();
+
       setStatus(result);
       if (result.success) {
         setEmail("");
@@ -48,7 +56,7 @@ export default function NewsletterSubscribe() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto py-8 px-4 relative mt-4">
+    <div className="w-full max-w-md mx-auto py-8 px-4 relative">
       {/* Close button */}
       <button
         onClick={handleClose}
