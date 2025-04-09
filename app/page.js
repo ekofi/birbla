@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
 import Image from "next/image";
 
+import NewsletterSubscribe from "../comp/NewsletterSubscribe";
+
 // Custom Image component without client-side state
 const PostImage = ({ src, ...props }) => {
   const fallbackImage =
