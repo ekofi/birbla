@@ -80,7 +80,6 @@ export default function NewsletterSubscribe() {
             name="_subject"
             value="New newsletter subscription!"
           />
-          <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input
             type="hidden"
