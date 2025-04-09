@@ -24,7 +24,7 @@ export default function Home() {
     gevent({
       action: "button_click",
       category: "engagement",
-      label: "example_button",
+      label: "button_join",
       value: 1,
     });
   };
@@ -152,6 +152,9 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <div className="w-full border-t border-gray-200 mt-8">
+        <NewsletterSubscribe />
+      </div>
       <Footer />
     </div>
   );
