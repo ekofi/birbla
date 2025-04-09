@@ -1,4 +1,3 @@
-// First, let's create a simplified API route instead of using the substack-subscriber package
 // app/api/newsletter/route.js
 import { NextResponse } from "next/server";
 
@@ -16,24 +15,20 @@ export async function POST(request) {
       );
     }
 
-    // Here we'll make a direct API call to Substack's API instead of using the package
-    // Using your specific Substack URL
+    // Here we'll make a direct API call to Substack's API using their public subscribe endpoint
     const substackUrl = "https://birbla.substack.com";
-    const publicationName = "birbla";
 
-    const response = await fetch(
-      `https://${publicationName}.substack.com/api/v1/subscribers`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          redirect_to: substackUrl,
-        }),
-      }
-    );
+    // Using the public subscription endpoint
+    const response = await fetch(`${substackUrl}/api/subscribe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        captcha: "off",
+      }),
+    });
 
     if (!response.ok) {
       throw new Error(`Substack API responded with status ${response.status}`);

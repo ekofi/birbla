@@ -56,7 +56,7 @@ export default function NewsletterSubscribe() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto py-8 px-4 relative">
+    <div className="w-full max-w-md mx-auto py-8 px-4 relative mt-4">
       {/* Close button */}
       <button
         onClick={handleClose}
@@ -99,7 +99,7 @@ export default function NewsletterSubscribe() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-6 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          className="px-6 py-2 bg-blue-700 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
         >
           {isSubmitting ? "Subscribing..." : "Subscribe"}
         </button>
